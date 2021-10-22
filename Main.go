@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 
 	"github.com/gocolly/colly"
 )
@@ -38,6 +39,9 @@ func main() {
 
 	collector.Visit("https://img.webmatrices.com")
 
+	enc := json.NewEncoder(os.Stdout)
+	enc.SetIndent("", "\t")
+	enc.Encode(allImages)
 	writeJSON(allImages)
 }
 
